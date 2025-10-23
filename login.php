@@ -1,43 +1,26 @@
 <?php
-/**
- * Page de connexion
- * Permet à un utilisateur existant de se connecter
- */
 
-// 📚 CONCEPT : Démarrage de session
-// TOUJOURS en premier, avant tout HTML
 session_start();
 
-// 📚 Chargement des classes nécessaires
 require_once 'classes/Database.php';
 require_once 'classes/User.php';
 
-// Variable pour stocker les erreurs
 $erreur = '';
 
-// 📚 CONCEPT : Traitement du formulaire POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Récupération et nettoyage des données
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
     
-    // 📚 Tentative de connexion
     $user = User::login($email, $password);
     
     if ($user) {
-        // ✅ Connexion réussie
-        // 📚 CONCEPT : Stockage en session
-        // Les sessions permettent de garder l'utilisateur connecté
-        // entre les pages
         $_SESSION['user_id'] = $user->getId();
         $_SESSION['user_pseudo'] = $user->getPseudo();
         
-        // 📚 Redirection vers l'accueil
         header('Location: index.php');
         exit;
         
     } else {
-        // ❌ Échec de connexion
         $erreur = 'Email ou mot de passe incorrect';
     }
 }

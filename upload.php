@@ -2,7 +2,6 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['pochette'])) {
     $fichier = $_FILES['pochette'];
 
-    // Vérifier erreurs
     if ($fichier['error'] === 0) {
         $extension = strtolower(pathinfo($fichier['name'], PATHINFO_EXTENSION));
         $extensionsOK = ['jpg', 'jpeg', 'png', 'gif'];

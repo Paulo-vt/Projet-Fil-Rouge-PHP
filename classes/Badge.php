@@ -1,8 +1,4 @@
 <?php
-/**
- * Classe Badge
- * Représente un badge que les utilisateurs peuvent débloquer
- */
 class Badge {
     private int $id;
     private string $nom;

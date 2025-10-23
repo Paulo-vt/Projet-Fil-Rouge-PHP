@@ -1,13 +1,4 @@
 <?php
-/**
- * Classe QuestionAudio
- * Permet de jouer un extrait musical avant de répondre
- *
- * 📚 STRUCTURE IDENTIQUE À QuestionImage
- * La seule différence est l'élément HTML utilisé :
- * - QuestionImage utilise <img>
- * - QuestionAudio utilise <audio>
- */
 
 class QuestionAudio extends Question {
     private string $mediaUrl;
@@ -32,8 +23,6 @@ class QuestionAudio extends Question {
         $html = '';
 
         $html .= '<div class="bg-white rounded-2xl shadow-xl p-6 mb-6">';
-
-        // En-tête
         $html .= '<div class="flex items-start gap-4 mb-6">';
         $html .= '<span class="bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm flex-shrink-0">';
         $html .= ($index + 1);
@@ -42,20 +31,13 @@ class QuestionAudio extends Question {
         $html .= htmlspecialchars($this->texteQuestion);
         $html .= '</h3>';
         $html .= '</div>';
-
-        // ====== NOUVEAU : LECTEUR AUDIO HTML5 ======
-        // 📚 CONCEPT : Balise <audio> HTML5
-        // controls = affiche les boutons play/pause/volume
-        // L'utilisateur peut écouter l'extrait autant de fois qu'il veut
         $html .= '<div class="mb-6 flex justify-center">';
         $html .= '<audio controls class="w-full max-w-md">';
         $html .= '<source src="' . htmlspecialchars($this->mediaUrl) . '" type="audio/mpeg">';
         $html .= 'Votre navigateur ne supporte pas l\'élément audio.';
         $html .= '</audio>';
         $html .= '</div>';
-        // ============================================
-
-        // Réponses
+        
         $html .= '<div class="space-y-3">';
         foreach ($this->reponses as $idx => $reponse) {
             $html .= '<label class="flex items-center p-4 rounded-xl border-2 border-gray-200 hover:border-purple-300 hover:bg-purple-50 cursor-pointer transition-all duration-200 group">';

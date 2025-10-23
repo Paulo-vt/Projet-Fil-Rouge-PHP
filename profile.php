@@ -17,7 +17,6 @@ $user = new User(
     $_SESSION['user_email'] ?? ''
 );
 
-// Récupération des badges
 $pdo = Database::getConnexion();
 $sql = "
     SELECT 
